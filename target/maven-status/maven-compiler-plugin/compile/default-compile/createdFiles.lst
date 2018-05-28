@@ -1,0 +1,10 @@
+net\hytekgames\skinchanger\SkinAPI$1.class
+net\hytekgames\skinchanger\commands\Command_Skin.class
+net\hytekgames\skinchanger\SkinChanger.class
+net\hytekgames\skinchanger\commands\Command_Setskin.class
+net\hytekgames\skinchanger\SkinAPI.class
+net\hytekgames\skinchanger\SkinApplier.class
+net\hytekgames\skinchanger\commands\Command_Help.class
+net\hytekgames\skinchanger\SkinAPI$Property.class
+mcmod.info
+net\hytekgames\skinchanger\SkinAPI$SkinRequestException.class
