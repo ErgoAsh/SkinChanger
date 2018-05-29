@@ -7,6 +7,6 @@
  
  Sponge Ore Page | [click here](https://ore.spongepowered.org/TeKGameR/SkinChanger)
 
- Discord | [click here](https://discord.gg/sEk7gTU)
+ Discord | [click here](https://discord.gg/bR24rtt)
 
  My Website | [click here](https://www.hytekgames.net/)
