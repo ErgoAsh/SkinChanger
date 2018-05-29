@@ -5,7 +5,7 @@
  
  Supported versions: 1.12.x
  
- Sponge Ore Page | [Comming Soon](url)
+ Sponge Ore Page | [click here](https://ore.spongepowered.org/TeKGameR/SkinChanger)
 
  Discord | [click here](https://discord.gg/sEk7gTU)
 
