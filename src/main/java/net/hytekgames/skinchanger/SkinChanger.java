@@ -9,11 +9,10 @@ import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.text.Text;
 
 import net.hytekgames.skinchanger.commands.Command_Help;
-import net.hytekgames.skinchanger.commands.Command_Setskin;
+import net.hytekgames.skinchanger.commands.Command_SetSkin;
 import net.hytekgames.skinchanger.commands.Command_Skin;
 
-@Plugin(id = "skinchanger", name = "SkinChanger", version = "1.0")
-
+@Plugin(id = "skinchanger", name = "SkinChanger", version = "1.1")
 public class SkinChanger {
 
 	private static SkinChanger instance;
@@ -28,13 +27,15 @@ public class SkinChanger {
 	public void onInitialize(GameInitializationEvent e) {
 		instance = this;
 		
-		CommandSpec command_help = CommandSpec.builder().description(Text.of("SkinChanger help command."))
+		CommandSpec command_help = CommandSpec.builder()
+				.description(Text.of("SkinChanger help command."))
 				.arguments(GenericArguments.optional(GenericArguments.string(Text.of("subcommand"))))
 				.permission("skinchanger.commands.help").executor(new Command_Help(this)).build();
 
-		Sponge.getCommandManager().register(this, command_help, "sc","skinchanger");
+		Sponge.getCommandManager().register(this, command_help, "sc", "skinchanger");
 
-		CommandSpec command_skin = CommandSpec.builder().description(Text.of("Set your skin."))
+		CommandSpec command_skin = CommandSpec.builder()
+				.description(Text.of("Set your skin."))
 				.arguments(GenericArguments.onlyOne(GenericArguments.string(Text.of("skin"))))
 				.permission("skinchanger.commands.skin").executor(new Command_Skin(this)).build();
 
@@ -43,7 +44,7 @@ public class SkinChanger {
 		CommandSpec command_setskin = CommandSpec.builder().description(Text.of("Set someone skin."))
 				.arguments(GenericArguments.onlyOne(GenericArguments.player(Text.of("player"))),
 						GenericArguments.string(Text.of("skin")))
-				.permission("skinchanger.commands.setskin").executor(new Command_Setskin(this)).build();
+				.permission("skinchanger.commands.setskin").executor(new Command_SetSkin(this)).build();
 
 		Sponge.getCommandManager().register(this, command_setskin, "setskin");
 

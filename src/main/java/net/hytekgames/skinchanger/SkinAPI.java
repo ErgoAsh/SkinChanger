@@ -51,7 +51,6 @@ public class SkinAPI {
 			JsonObject obj = element.getAsJsonObject();
 
 			Property property = new Property();
-
 			if (obj.has("raw")) {
 				JsonObject raw = obj.getAsJsonObject("raw");
 

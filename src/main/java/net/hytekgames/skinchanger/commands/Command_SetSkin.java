@@ -11,41 +11,48 @@ import org.spongepowered.api.command.spec.CommandExecutor;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.profile.property.ProfileProperty;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.format.TextColors;
 
 import net.hytekgames.skinchanger.SkinAPI;
 import net.hytekgames.skinchanger.SkinAPI.SkinRequestException;
 import net.hytekgames.skinchanger.SkinChanger;
 
-public class Command_Setskin implements CommandExecutor {
+public class Command_SetSkin implements CommandExecutor {
 
 	SkinChanger plugin;
 
-	public Command_Setskin(SkinChanger plugin) {
+	public Command_SetSkin(SkinChanger plugin) {
 		this.plugin = plugin;
 	}
 
 	@Override
 	public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
-		Player p = (Player) src;
 		Player target = (Player) args.<Player>getOne("player").get();
 
 		Collection<ProfileProperty> profile = target.getProfile().getPropertyMap().get("textures");
 		String skin = args.<String>getOne("skin").get().toLowerCase();
-		Optional<ProfileProperty> textures = null;
+		Optional<ProfileProperty> textures = Optional.empty();
 		try {
 			String SkinUUID = SkinAPI.getUUID(skin);
 			textures = SkinAPI.getSkinProperty(SkinUUID);
 		} catch (SkinRequestException e) {
 			if (e.getReason() == "USER_DOESNT_EXIST") {
-				p.sendMessage(Text.builder(SkinChanger.prefix + "\u00a7c Sorry, This account does not exist.").build());
+				src.sendMessage(Text.builder(SkinChanger.prefix + "\u00a7c Sorry, This account does not exist.").build());
 				return CommandResult.empty();
 			}
 		}
 
-		profile.clear();
-		profile.add(textures.get());
-		plugin.getSkinApplier().setPlayerSkin(target);
-		return CommandResult.success();
+		if (textures.isPresent()) {
+			profile.clear();
+			profile.add(textures.get());
+			plugin.getSkinApplier().setPlayerSkin(target);
+			
+			return CommandResult.success();
+		} else {
+			src.sendMessage(Text.builder(SkinChanger.prefix + "\u00a7c Could not find textures.")
+					.color(TextColors.RED).build());
+			return CommandResult.empty();
+		}
 
 	}
 }

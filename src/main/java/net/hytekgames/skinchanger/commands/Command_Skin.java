@@ -46,11 +46,18 @@ public class Command_Skin implements CommandExecutor {
 			}
 		}
 
-		profile.clear();
-		profile.add(textures.get());
-		plugin.getSkinApplier().setPlayerSkin(p);
-		return CommandResult.success();
-
+		if (textures.isPresent()) {
+			profile.clear();
+			profile.add(textures.get());
+			plugin.getSkinApplier().setPlayerSkin(p);
+			
+			return CommandResult.success();
+		} else {
+			src.sendMessage(Text.builder(SkinChanger.prefix + "\u00a7c Could not find textures.")
+					.color(TextColors.RED).build());
+			return CommandResult.empty();
+		}
+		
 	}
 
 }
